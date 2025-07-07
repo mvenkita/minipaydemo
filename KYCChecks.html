@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ligero Service Tiers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
+            color: #000000;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .service-card {
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card.small {
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+        }
+
+        .service-card.medium {
+            background: linear-gradient(135deg, #a8e6a8 0%, #90d690 100%);
+        }
+
+        .service-card.large {
+            background: linear-gradient(135deg, #66cc66 0%, #4da64d 100%);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #2d5a2d;
+            box-shadow: 0 20px 40px rgba(0, 100, 0, 0.3);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .service-card.small::before {
+            background: linear-gradient(90deg, #4da64d, #66cc66);
+        }
+
+        .service-card.medium::before {
+            background: linear-gradient(90deg, #2d5a2d, #4da64d);
+        }
+
+        .service-card.large::before {
+            background: linear-gradient(90deg, #1a3d1a, #2d5a2d);
+        }
+
+        .service-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #1a3d1a;
+            text-align: center;
+        }
+
+        .service-items {
+            list-style: none;
+        }
+
+        .service-items li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            line-height: 1.5;
+            transition: all 0.2s ease;
+            color: #000000;
+        }
+
+        .service-items li:hover {
+            color: #1a3d1a;
+            padding-left: 8px;
+        }
+
+        .service-items li:last-child {
+            border-bottom: none;
+        }
+
+        .service-items li::before {
+            content: '✓';
+            color: #1a3d1a;
+            font-weight: bold;
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(26, 61, 26, 0.2);
+            font-size: 12px;
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(45deg, #1a3d1a, #4da64d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #333333;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 900px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .service-card {
+                padding: 24px;
+            }
+            
+            .main-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">Service Tiers</h1>
+        <p class="subtitle">Choose the verification level that fits your needs</p>
+        
+        <div class="services-grid">
+            <div class="service-card small">
+                <h2 class="service-title">Small</h2>
+                <ul class="service-items">
+                    <li>Mobile ID</li>
+                    <li>Biometric Verification</li>
+                </ul>
+            </div>
+            
+            <div class="service-card medium">
+                <h2 class="service-title">Medium</h2>
+                <ul class="service-items">
+                    <li>Proof of Address</li>
+                    <li>OFAC/PEP Screening</li>
+                    <li>Video Screening</li>
+                    <li>AML Screening</li>
+                    <li>Liveness with Deepfake Detection</li>
+                    <li>Adverse Media Scanning</li>
+                    <li>Fraud Detection</li>
+                </ul>
+            </div>
+            
+            <div class="service-card large">
+                <h2 class="service-title">Large</h2>
+                <ul class="service-items">
+                    <li>Customized Checks</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Pool Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .checkbox-group {
+            margin-bottom: 20px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .checkbox-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .checkbox-item input {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-create {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            color: white;
+        }
+
+        .btn-create:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .btn-load {
+            background: linear-gradient(45deg, #3498db, #5dade2);
+            color: white;
+        }
+
+        .btn-load:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .explorer-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 10px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        th, td {
+            padding: 12px 8px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: linear-gradient(45deg, #34495e, #2c3e50);
+            color: white;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .address {
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            color: #666;
+            word-break: break-all;
+        }
+
+        .amount {
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .balance-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 10px;
+        }
+
+        .no-transactions {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            padding: 30px;
+        }
+
+        .currency {
+            color: #8e44ad;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔒 Privacy Pool Interface</h1>
+            <p>Secure Transaction Management System</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Form Section -->
+            <div class="card">
+                <div class="form-title">Create/Load Privacy Pool</div>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="digital-id">
+                        <label for="digital-id">Digital ID (CBOR)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="pep">
+                        <label for="pep">PEP</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="source-funds">
+                        <label for="source-funds">Source of Funds</label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="public-key">Public Key</label>
+                    <input type="text" id="public-key" readonly>
+                </div>
+
+                <div class="input-group">
+                    <label for="id">ID</label>
+                    <input type="text" id="id" readonly>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-create" onclick="createPool()">Create Pool</button>
+                    <button class="btn btn-load" onclick="loadPool()">Load Pool</button>
+                </div>
+            </div>
+
+            <!-- Block Explorer Section -->
+            <div class="card">
+                <div class="explorer-title">Transactions</div>
+                <div class="table-container">
+                    <table id="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Sender Address</th>
+                                <th>Receiver Address</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactions-body">
+                            <tr>
+                                <td colspan="3" class="no-transactions">No transactions loaded. Click "Load Pool" to view transactions.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Balances Section -->
+        <div class="card full-width">
+            <div class="balance-title">Account Balances</div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Wallet Address</th>
+                            <th>Wallet Credentials</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="balances-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate random 256-bit hex number
+        function generate256BitHex() {
+            const bytes = new Uint8Array(32);
+            for (let i = 0; i < 32; i++) {
+                bytes[i] = Math.floor(Math.random() * 256);
+            }
+            return Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Generate random balance
+        function generateBalance() {
+            return (Math.random() * 1000).toFixed(2);
+        }
+
+        // Initialize public key on page load
+        function initializeForm() {
+            document.getElementById('public-key').value = generate256BitHex();
+            populateAccountBalances();
+        }
+
+        // Create pool function
+        function createPool() {
+            const idInput = document.getElementById('id');
+            idInput.value = generate256BitHex();
+            
+            // Add a subtle animation
+            idInput.style.backgroundColor = '#d4edda';
+            setTimeout(() => {
+                idInput.style.backgroundColor = '';
+            }, 1000);
+        }
+
+        // Sample transaction data
+        const sampleTransactions = [
+            {
+                sender: generate256BitHex(),
+                receiver: generate256BitHex(),
+                amount: (Math.random() * 100).toFixed(4)
+            },
+            {
+                sender: generate256BitHex(),
+                receiver: generate256BitHex(),
+                amount: (Math.random() * 50).toFixed(4)
+            },
+            {
+                sender: generate256BitHex(),
+                receiver: generate256BitHex(),
+                amount: (Math.random() * 200).toFixed(4)
+            },
+            {
+                sender: generate256BitHex(),
+                receiver: generate256BitHex(),
+                amount: (Math.random() * 75).toFixed(4)
+            },
+            {
+                sender: generate256BitHex(),
+                receiver: generate256BitHex(),
+                amount: (Math.random() * 150).toFixed(4)
+            }
+        ];
+
+        // Load pool function
+        function loadPool() {
+            const tbody = document.getElementById('transactions-body');
+            tbody.innerHTML = '';
+
+            sampleTransactions.forEach(tx => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="address">${tx.sender}</td>
+                    <td class="address">${tx.receiver}</td>
+                    <td class="amount">${tx.amount} ETH</td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            // Add loading animation effect
+            const table = document.getElementById('transactions-table');
+            table.style.opacity = '0.5';
+            setTimeout(() => {
+                table.style.opacity = '1';
+            }, 500);
+        }
+
+        // Populate account balances
+        function populateAccountBalances() {
+            const tbody = document.getElementById('balances-body');
+            
+            for (let i = 0; i < 6; i++) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="address">${generate256BitHex()}</td>
+                    <td class="address">${generate256BitHex()}</td>
+                    <td class="amount">${generateBalance()} <span class="currency">JPMD</span></td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        // Initialize everything when page loads
+        window.onload = initializeForm;
+    </script>
+</body>
+</html>

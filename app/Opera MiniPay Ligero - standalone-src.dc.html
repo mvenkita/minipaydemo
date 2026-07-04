@@ -45,7 +45,7 @@
 
         <div style="flex:1; overflow-y:auto; padding:8px 20px 24px; display:flex; flex-direction:column; gap:16px;">
 
-          <div ref="{{ setPublicCardRef }}" onPointerDown="{{ onPublicPointerDown }}" style="background:{{ publicCardBg }}; border:1.5px solid {{ publicCardBorder }}; border-radius:20px; padding:20px; display:flex; flex-direction:column; gap:10px; cursor:grab; touch-action:none; user-select:none; opacity:{{ publicCardOpacity }}; transition:opacity 0.1s, background 0.15s, border-color 0.15s;">
+          <div ref="{{ setPublicCardRef }}" onPointerDown="{{ onPublicPointerDown }}" onMouseDown="{{ onPublicPointerDown }}" style="background:{{ publicCardBg }}; border:1.5px solid {{ publicCardBorder }}; border-radius:20px; padding:20px; display:flex; flex-direction:column; gap:10px; cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; -webkit-tap-highlight-color:transparent; opacity:{{ publicCardOpacity }}; transition:opacity 0.1s, background 0.15s, border-color 0.15s;">
             <div style="display:flex; align-items:center; justify-content:space-between;">
               <div style="font-size:13px; color:rgba(255,255,255,0.8); font-weight:500;">Checking (Public)</div>
               <div style="font-size:11px; color:rgba(255,255,255,0.85); background:rgba(0,0,0,0.16); padding:4px 8px; border-radius:20px;">Celo &middot; 0x8f3a&hellip;9c1d</div>
@@ -62,7 +62,7 @@
             <svg width="16" height="16" viewBox="0 0 16 16" style="opacity:0.35;"><path d="M8 2v10M3 8l5 5 5-5" stroke="#8A8A93" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </div>
 
-          <div ref="{{ setPrivateCardRef }}" onPointerDown="{{ onPrivatePointerDown }}" style="background:{{ privateCardBg }}; border:1.5px solid {{ privateCardBorder }}; border-radius:20px; padding:20px; display:flex; flex-direction:column; gap:10px; cursor:grab; touch-action:none; user-select:none; opacity:{{ privateCardOpacity }}; transition:opacity 0.1s, background 0.15s, border-color 0.15s;">
+          <div ref="{{ setPrivateCardRef }}" onPointerDown="{{ onPrivatePointerDown }}" onMouseDown="{{ onPrivatePointerDown }}" style="background:{{ privateCardBg }}; border:1.5px solid {{ privateCardBorder }}; border-radius:20px; padding:20px; display:flex; flex-direction:column; gap:10px; cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; -webkit-tap-highlight-color:transparent; opacity:{{ privateCardOpacity }}; transition:opacity 0.1s, background 0.15s, border-color 0.15s;">
             <div style="display:flex; align-items:center; justify-content:space-between;">
               <div style="font-size:13px; color:rgba(255,255,255,0.75); font-weight:500;">Savings (Private)</div>
               <svg width="15" height="15" viewBox="0 0 16 16"><rect x="3" y="7" width="10" height="7" rx="1.5" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.4"></rect><path d="M5.5 7V5a2.5 2.5 0 015 0v2" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.4"></path></svg>
@@ -88,7 +88,7 @@
               <div style="display:flex; flex-direction:column; align-items:flex-end; gap:3px;">
                 <span style="font-size:9px; color:rgba(255,255,255,0.65); letter-spacing:0.03em; text-transform:uppercase;">Powered by</span>
                 <div style="display:flex; align-items:center; background:#F5F6FA; border-radius:20px; padding:3px 8px; ">
-                  <img src="./ligero-logo.svg" alt="Ligero" style="height:9px; width:auto; display:block;" />
+                  <img src="./ligero-logo.svg" alt="Ligero" draggable="false" style="height:9px; width:auto; display:block; -webkit-user-drag:none;" />
                 </div>
               </div>
             </div>
@@ -98,7 +98,7 @@
             <svg width="16" height="16" viewBox="0 0 16 16" style="opacity:0.35;"><path d="M8 2v10M3 8l5 5 5-5" stroke="#8A8A93" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </div>
 
-          <div ref="{{ setVaultCardRef }}" onPointerDown="{{ onVaultPointerDown }}" style="background:{{ vaultCardBg }}; border:1.5px solid {{ vaultCardBorder }}; border-radius:20px; padding:20px; display:flex; flex-direction:column; gap:10px; cursor:grab; touch-action:none; user-select:none; opacity:{{ vaultCardOpacity }}; transition:opacity 0.1s, background 0.15s, border-color 0.15s;">
+          <div ref="{{ setVaultCardRef }}" onPointerDown="{{ onVaultPointerDown }}" onMouseDown="{{ onVaultPointerDown }}" style="background:{{ vaultCardBg }}; border:1.5px solid {{ vaultCardBorder }}; border-radius:20px; padding:20px; display:flex; flex-direction:column; gap:10px; cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; -webkit-tap-highlight-color:transparent; opacity:{{ vaultCardOpacity }}; transition:opacity 0.1s, background 0.15s, border-color 0.15s;">
             <div style="display:flex; align-items:center; justify-content:space-between;">
               <div style="font-size:13px; color:rgba(255,255,255,0.75); font-weight:500;">Vault</div>
               <svg width="15" height="15" viewBox="0 0 16 16"><rect x="3" y="7" width="10" height="7" rx="1.5" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.4"></rect><path d="M5.5 7V5a2.5 2.5 0 015 0v2" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.4"></path></svg>
@@ -121,7 +121,7 @@
                 <svg width="14" height="14" viewBox="0 0 14 14" style="opacity:0.75;"><circle cx="3" cy="3" r="1.4" fill="#fff"></circle><circle cx="7" cy="3" r="1.4" fill="#fff"></circle><circle cx="3" cy="7" r="1.4" fill="#fff"></circle><circle cx="7" cy="7" r="1.4" fill="#fff"></circle><circle cx="3" cy="11" r="1.4" fill="#fff"></circle><circle cx="7" cy="11" r="1.4" fill="#fff"></circle></svg>
                 <span style="font-size:12.5px; font-weight:600; color:rgba(255,255,255,0.85);">Drag to redeem</span>
               </div>
-              <img src="./feather-vault-logo.png" alt="Vault" style="width:26px; height:26px; border-radius:50%; display:block;" />
+              <img src="./feather-vault-logo.png" alt="Vault" draggable="false" style="width:26px; height:26px; border-radius:50%; display:block; -webkit-user-drag:none;" />
             </div>
           </div>
 
@@ -231,6 +231,23 @@ class Component extends DCLogic {
     }, 2000);
   }
 
+  pointFromEvent(e) {
+    if (e.touches && e.touches[0]) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    if (e.changedTouches && e.changedTouches[0]) return { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
+    return { x: e.clientX, y: e.clientY };
+  }
+
+  startDrag(e, source) {
+    if (e.cancelable) e.preventDefault();
+    if (!this.containerEl || this.state.dragging) return;
+    if (e.pointerId != null && e.currentTarget && e.currentTarget.setPointerCapture) {
+      try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+    const { x, y } = this.pointFromEvent(e);
+    const rect = this.containerEl.getBoundingClientRect();
+    this.setState({ dragging: true, dragSource: source, dragX: x - rect.left, dragY: y - rect.top });
+  }
+
   targetsFor(source) {
     if (source === 'public') return ['private'];
     if (source === 'private') return ['public', 'vault'];
@@ -248,16 +265,17 @@ class Component extends DCLogic {
   componentDidMount() {
     this._onMove = (e) => {
       if (!this.state.dragging || !this.containerEl) return;
+      const pt = this.pointFromEvent(e);
       const rect = this.containerEl.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const x = pt.x - rect.left;
+      const y = pt.y - rect.top;
       const candidates = this.targetsFor(this.state.dragSource);
       let overTarget = null;
       for (const name of candidates) {
         const el = this.cardEl(name);
         if (!el) continue;
         const pr = el.getBoundingClientRect();
-        if (e.clientX >= pr.left && e.clientX <= pr.right && e.clientY >= pr.top && e.clientY <= pr.bottom) {
+        if (pt.x >= pr.left && pt.x <= pr.right && pt.y >= pr.top && pt.y <= pr.bottom) {
           overTarget = name;
           break;
         }
@@ -280,11 +298,45 @@ class Component extends DCLogic {
     };
     window.addEventListener('pointermove', this._onMove);
     window.addEventListener('pointerup', this._onUp);
+    // Fallback for browsers/inputs that don't deliver Pointer Events reliably.
+    window.addEventListener('mousemove', this._onMove);
+    window.addEventListener('mouseup', this._onUp);
+    window.addEventListener('touchmove', this._onMove, { passive: true });
+    window.addEventListener('touchend', this._onUp);
+    window.addEventListener('touchcancel', this._onUp);
+
+    // React registers touchstart passively by default, so preventDefault() there
+    // is a no-op and Android Chrome can still trigger text-selection callouts.
+    // Attach real non-passive native listeners on each card instead.
+    this._nativeTouchHandlers = [
+      ['publicCardEl', 'public'],
+      ['privateCardEl', 'private'],
+      ['vaultCardEl', 'vault'],
+    ].map(([prop, source]) => {
+      const handler = (e) => this.startDrag(e, source);
+      const attach = () => {
+        const el = this[prop];
+        if (el) el.addEventListener('touchstart', handler, { passive: false });
+        return el;
+      };
+      const el = attach();
+      return { prop, el, handler };
+    });
   }
 
   componentWillUnmount() {
     window.removeEventListener('pointermove', this._onMove);
     window.removeEventListener('pointerup', this._onUp);
+    window.removeEventListener('mousemove', this._onMove);
+    window.removeEventListener('mouseup', this._onUp);
+    window.removeEventListener('touchmove', this._onMove);
+    window.removeEventListener('touchend', this._onUp);
+    window.removeEventListener('touchcancel', this._onUp);
+    if (this._nativeTouchHandlers) {
+      this._nativeTouchHandlers.forEach(({ el, handler }) => {
+        if (el) el.removeEventListener('touchstart', handler);
+      });
+    }
     if (this._proofTimeout) clearTimeout(this._proofTimeout);
   }
 
@@ -350,22 +402,13 @@ class Component extends DCLogic {
       stopRevealPropagation: (e) => e.stopPropagation(),
 
       onPublicPointerDown: (e) => {
-        e.preventDefault();
-        if (!this.containerEl || this.state.dragging) return;
-        const rect = this.containerEl.getBoundingClientRect();
-        this.setState({ dragging: true, dragSource: 'public', dragX: e.clientX - rect.left, dragY: e.clientY - rect.top });
+        this.startDrag(e, 'public');
       },
       onPrivatePointerDown: (e) => {
-        e.preventDefault();
-        if (!this.containerEl || this.state.dragging) return;
-        const rect = this.containerEl.getBoundingClientRect();
-        this.setState({ dragging: true, dragSource: 'private', dragX: e.clientX - rect.left, dragY: e.clientY - rect.top });
+        this.startDrag(e, 'private');
       },
       onVaultPointerDown: (e) => {
-        e.preventDefault();
-        if (!this.containerEl || this.state.dragging) return;
-        const rect = this.containerEl.getBoundingClientRect();
-        this.setState({ dragging: true, dragSource: 'vault', dragX: e.clientX - rect.left, dragY: e.clientY - rect.top });
+        this.startDrag(e, 'vault');
       },
 
       dragging,
@@ -398,7 +441,7 @@ class Component extends DCLogic {
       setAmount20: () => this.setState({ amount: String(Math.round(sourceBalance * 0.2 * 100) / 100) }),
       setAmount50: () => this.setState({ amount: String(Math.round(sourceBalance * 0.5 * 100) / 100) }),
 
-      amountColor: validAmt ? '#F5F5F7' : '#5A5A63',
+      amountColor: validAmt ? '#16161B' : '#9A9AA3',
       shieldDisabled: !validAmt,
       shieldButtonBg: validAmt ? transferAccent : '#2A2A32',
       shieldButtonCursor: validAmt ? 'pointer' : 'not-allowed',
